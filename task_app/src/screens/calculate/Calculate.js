@@ -19,6 +19,7 @@ export default function Calculate({navigation}) {
                 <ButtonText>CALCULATE</ButtonText>
             </Button>
         </Button_TextField>
+        
       </SafeAreaView>
     </Scaffold>
   );

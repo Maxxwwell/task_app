@@ -10,11 +10,11 @@ export const Scaffold = styled(View)`
 
 export const HeaderContainer = styled(View)`
     align-items: center;
-    margin-top: 50px
+    margin-top: 60px
 `
 
 export const IconContainer = styled(View)`
-    margin-top: 30%
+    margin-top: 40%
    align-items: center;
 `
 
@@ -42,7 +42,7 @@ export const ButtonText = styled(Text)`
 export const InfoText = styled(Text)`
     font-size: 18px;
     text-align: center;
-    margin-top: 18px;
+    margin-top: 40px;
     color: ${({ theme }) => theme.colors.grey};
 `;
 
@@ -51,7 +51,7 @@ export const Button = styled(TouchableOpacity)`
     justify-content: center;
     width: 100%;
     height: 55px;
-    margin-top: 55%;
+    margin-top: 45%;
     background-color: ${({ theme }) => theme.colors.secondary};
     border-radius: 50px;
 `
