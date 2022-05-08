@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styled from 'styled-components';
+
 
 export const Scaffold = styled(View)`
     flex: 1;
@@ -75,7 +76,6 @@ export const AmountTax = styled(Text)`
     font-size: 25px
 `
 
-
 export const ContributionsContainer = styled(View)`
     background-color: ${({ theme }) => theme.colors.grey};
     box-shadow: 5px 5px 2px  rgba(173, 86, 167, 10);
@@ -90,5 +90,10 @@ export const TakeHomeContainer = styled(View)`
     padding: 10px
     border-radius: 10px
     margin-top: 5%;
+`
 
+export const Loader = styled(ActivityIndicator)`
+    
+    justify-content: center
+    height: 70%
 `

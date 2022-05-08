@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import {
   AmountTax,
@@ -8,6 +8,7 @@ import {
   Divider,
   Divider_,
   HeaderContainer,
+  Loader,
   Scaffold,
   TakeHomeContainer,
   Tax,
@@ -18,9 +19,31 @@ import {
 } from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import { Button, ButtonText } from '../onBoard/style';
+import { useRoute } from '@react-navigation/native';
+import { useEffect, useState } from 'react/cjs/react.development';
 
 export default function Home({navigation}) {
+
+  const [isLoading, setIsLoading] = useState(false);
+  const route = useRoute()
+  let GrossSalary = route.params.amount;
+  const PAYE = (GrossSalary * 0.08).toFixed(2);
+  const EmployerContribution = (GrossSalary * 0.0775).toFixed(2);
+  const SNNIT = (GrossSalary * 0.055).toFixed(2);
+  const NetSalary = (GrossSalary - PAYE - EmployerContribution - SNNIT).toFixed(2);
+
+  useEffect (() => {
+   setIsLoading(true);
+   console.log('loading....')
+   setTimeout(() => {
+    console.log('finished loading..')
+    setIsLoading(false)
+   }, 1000)
+  } , [1000])
+  
+
   return (
+    
     <Scaffold>
       <SafeAreaView>
 
@@ -33,12 +56,16 @@ export default function Home({navigation}) {
           Compute your net income, PAYE income tax and SSNIT deduction
         </DescriptionText>
 
-        <TaxContainer>
+         {
+            isLoading ? <Loader size="small"/> 
+            : 
+            <>
+            <TaxContainer>
           <TaxTitle>Personal income tax</TaxTitle>
           <Divider />
           <TaxTextContainer>
             <TaxText>PAYE Tax</TaxText>
-            <AmountTax>GH¢ </AmountTax>
+            <AmountTax>GH¢ {PAYE}</AmountTax>
           </TaxTextContainer>
 
         </TaxContainer>
@@ -49,11 +76,11 @@ export default function Home({navigation}) {
           <Divider />
           <TaxTextContainer>
             <TaxText>Employer Pension</TaxText>
-            <AmountTax>GH¢ </AmountTax>
+            <AmountTax>GH¢ {EmployerContribution}</AmountTax>
           </TaxTextContainer>
           <TaxTextContainer>
             <TaxText>SSNIT</TaxText>
-            <AmountTax>GH¢ </AmountTax>
+            <AmountTax>GH¢ {SNNIT}</AmountTax>
           </TaxTextContainer>
         </ContributionsContainer>
 
@@ -62,7 +89,7 @@ export default function Home({navigation}) {
           <Divider />
           <TaxTextContainer>
             <TaxText>Net salary</TaxText>
-            <AmountTax>GH¢ </AmountTax>
+            <AmountTax>GH¢ {NetSalary}</AmountTax>
           </TaxTextContainer>
 
         </TakeHomeContainer>
@@ -71,6 +98,10 @@ export default function Home({navigation}) {
         
           <ButtonText>RECALCULATE</ButtonText>
         </Button>
+
+            </>
+
+         }
 
       </SafeAreaView>
     </Scaffold>
