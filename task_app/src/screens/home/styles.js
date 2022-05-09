@@ -8,7 +8,7 @@ export const Scaffold = styled(View)`
     padding-left: 15px;
     padding-right: 15px;
     background-color: ${({ theme }) => theme.colors.primary};
-    justify-content: space-between
+    justify-content: space-evenly
 `;
 
 export const HeaderContainer = styled(View)`
@@ -96,4 +96,14 @@ export const Loader = styled(ActivityIndicator)`
     
     justify-content: center
     height: 70%
+`
+
+export const RecalculateButton = styled(TouchableOpacity)`
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    margin-top: 30%;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border-radius: 50px;
 `

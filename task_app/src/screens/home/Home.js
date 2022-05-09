@@ -9,6 +9,7 @@ import {
   Divider_,
   HeaderContainer,
   Loader,
+  RecalculateButton,
   Scaffold,
   TakeHomeContainer,
   Tax,
@@ -94,10 +95,10 @@ export default function Home({navigation}) {
 
         </TakeHomeContainer>
 
-        <Button activeOpacity={0.8} onPress={()=>navigation.goBack()}>
+        <RecalculateButton activeOpacity={0.8} onPress={()=>navigation.goBack()}>
         
           <ButtonText>RECALCULATE</ButtonText>
-        </Button>
+        </RecalculateButton>
 
             </>
 

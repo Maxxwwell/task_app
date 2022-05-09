@@ -16,7 +16,6 @@ import icons from '../../theme/icons';
 export default function Onboard({navigation}) {
   return (
     <Scaffold>
-      <StatusBar backgroundColor="white" />
       <SafeAreaView>
         <HeaderContainer>
           <Tax>TAX</Tax>

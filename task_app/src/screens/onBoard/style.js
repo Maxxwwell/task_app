@@ -6,6 +6,7 @@ export const Scaffold = styled(View)`
     flex: 1;
     padding: 15px;
     background-color: ${({ theme }) => theme.colors.primary};
+    justify-content: space-evenly
 `;
 
 export const HeaderContainer = styled(View)`
@@ -42,7 +43,7 @@ export const ButtonText = styled(Text)`
 export const InfoText = styled(Text)`
     font-size: 18px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 10px;
     color: ${({ theme }) => theme.colors.grey};
 `;
 
