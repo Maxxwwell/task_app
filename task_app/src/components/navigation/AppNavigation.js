@@ -5,6 +5,7 @@ import Onboard from '../../screens/onBoard/Onboard'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../../screens/home/Home'
 import Calculate from '../../screens/calculate/Calculate'
+import NetSalary from '../../screens/net_salary/NetSalary'
 
 const Stack = createNativeStackNavigator()
 export default function AppNavigation() {
@@ -16,6 +17,7 @@ export default function AppNavigation() {
             <Stack.Screen name='onBoard' component={Onboard} options={{headerShown: false}}/>
             <Stack.Screen name='calculate' component={Calculate} options={{headerShown: false}}/>
             <Stack.Screen name='home' component={Home} options={{headerShown: false}}/>
+            <Stack.Screen name='net_salary' component={NetSalary} options={{headerShown: false}}/>
 
        </Stack.Navigator>
    </NavigationContainer>

@@ -1,4 +1,4 @@
-import {View, Text, Keyboard, Alert} from 'react-native';
+import {View, Text, Keyboard, Alert, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -7,14 +7,17 @@ import {
   ButtonText,
   Button_TextField,
   LeadingText,
+  NetInsteadContainer,
+  NetText,
   Scaffold,
   TextField,
   TextFieldContainer,
 } from './styles';
 import {HeaderContainer} from '../onBoard/style';
 import {useState} from 'react';
-export default function Calculate({navigation, route}) {
 
+
+export default function Calculate({navigation, route}) {
   const [amount, setAmount] = useState('');
 
   const validate = () => {
@@ -22,12 +25,16 @@ export default function Calculate({navigation, route}) {
     if (!amount) {
       Alert.alert('Oops..', 'Amount is required');
       return;
-    } else if(amount < 1) {
+    } else if (amount < 1) {
       Alert.alert('Oops..', 'Salary can not be 0');
       return;
     }
     navigation.navigate('home', {amount: amount});
   };
+
+  if (amount < 300) {
+    console.log(amount);
+  }
 
   return (
     <Scaffold>
@@ -44,13 +51,19 @@ export default function Calculate({navigation, route}) {
             onChangeText={text => setAmount(text)}
           />
 
-        <Button onPress={() => {
-          validate()
-          setAmount('')
-          }}>
+          <Button
+            onPress={() => {
+              validate();
+              setAmount('');
+            }}>
             <ButtonText>CALCULATE</ButtonText>
           </Button>
         </Button_TextField>
+        <NetInsteadContainer>
+          <TouchableOpacity onPress={() => navigation.navigate("net_salary")}>
+            <NetText>Enter your net salary instead?</NetText>
+          </TouchableOpacity>
+        </NetInsteadContainer>
       </SafeAreaView>
     </Scaffold>
   );

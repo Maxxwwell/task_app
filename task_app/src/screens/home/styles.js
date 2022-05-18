@@ -92,8 +92,7 @@ export const TakeHomeContainer = styled(View)`
     margin-top: 5%;
 `
 
-export const Loader = styled(ActivityIndicator)`
-    
+export const Loader = styled(ActivityIndicator)`   
     justify-content: center
     height: 70%
 `

@@ -6,6 +6,7 @@ export const Scaffold = styled(View)`
   flex: 1;
   padding: 15px;
   background-color: ${({theme}) => theme.colors.grey};
+
 `;
 
 export const AmountText = styled(Text)`
@@ -48,3 +49,16 @@ export const ButtonText = styled(Text)`
     font-weight: bold
     color: ${({theme}) => theme.colors.primary};
 `;
+
+export const NetInsteadContainer = styled(View)`
+    align-items: center;
+    margin-top: 10%;
+`;
+
+
+export const NetText = styled(Text)`
+  font-size: 15px;
+  font-weight: bold;
+`
+
+

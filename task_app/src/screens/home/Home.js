@@ -28,10 +28,23 @@ export default function Home({navigation}) {
   const [isLoading, setIsLoading] = useState(false);
   const route = useRoute()
   let GrossSalary = route.params.amount;
-  const PAYE = (GrossSalary * 0.08).toFixed(2);
-  const EmployerContribution = (GrossSalary * 0.0775).toFixed(2);
+  let PAYE = (GrossSalary * 0.25).toFixed(2);
+  const EmployerContribution = (GrossSalary * 0.03).toFixed(2);
   const SNNIT = (GrossSalary * 0.055).toFixed(2);
-  const NetSalary = (GrossSalary - PAYE - EmployerContribution - SNNIT).toFixed(2);
+  if (GrossSalary < 365){
+    PAYE = 0
+  }  else if(GrossSalary > 365 && GrossSalary <= 475){
+    PAYE = (GrossSalary * 0.05).toFixed(2);
+  }
+   if(GrossSalary > 475 && GrossSalary <= 605){
+    PAYE = (GrossSalary * 0.1).toFixed(2);
+  }
+
+  else if(GrossSalary > 605 && GrossSalary <= 3000){
+    PAYE = (GrossSalary * 0.175).toFixed(2);
+  }
+  let NetSalary = (GrossSalary - PAYE -EmployerContribution - SNNIT).toFixed(2);
+
 
   useEffect (() => {
    setIsLoading(true);
