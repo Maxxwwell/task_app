@@ -1,6 +1,7 @@
 import {Keyboard, Alert, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useState} from 'react';
 import {
   AmountText,
   Button,
@@ -12,35 +13,32 @@ import {
   Scaffold,
   TextField,
   TextFieldContainer,
-} from './styles';
-import {HeaderContainer} from '../onBoard/style';
-import {useState} from 'react';
+} from '../calculate/styles';
+import { HeaderContainer } from '../onBoard/style';
 
+export default function Calculate_Gross({navigation, route}) {
+    const [amount, setAmount] = useState('');
+    const validate = () => {
+        Keyboard.dismiss();
+        if (!amount) {
+          Alert.alert('Oops..', 'Amount is required');
+          return;
+        } else if (amount < 1) {
+          Alert.alert('Oops..', 'Salary can not be 0');
+          return;
+        }
+        navigation.navigate('home', {amount: amount});
+      };
+    
+      if (amount < 300) {
+        console.log(amount);
+      }
 
-export default function Calculate({navigation, route}) {
-  const [amount, setAmount] = useState('');
-
-  const validate = () => {
-    Keyboard.dismiss();
-    if (!amount) {
-      Alert.alert('Oops..', 'Amount is required');
-      return;
-    } else if (amount < 1) {
-      Alert.alert('Oops..', 'Salary can not be 0');
-      return;
-    }
-    navigation.navigate('home', {amount: amount});
-  };
-
-  if (amount < 300) {
-    console.log(amount);
-  }
-
-  return (
+    return (
     <Scaffold>
       <SafeAreaView>
         <HeaderContainer>
-          <AmountText>How much is your gross monthly income?</AmountText>
+          <AmountText>How much is your net monthly income?</AmountText>
         </HeaderContainer>
         <Button_TextField>
           <TextField
@@ -60,8 +58,8 @@ export default function Calculate({navigation, route}) {
           </Button>
         </Button_TextField>
         <NetInsteadContainer>
-          <TouchableOpacity onPress={() => navigation.navigate("calculate_gross")}>
-            <NetText>Enter your net salary instead?</NetText>
+          <TouchableOpacity onPress={() => navigation.navigate('calculate')}>
+            <NetText>Enter your gross salary instead?</NetText>
           </TouchableOpacity>
         </NetInsteadContainer>
       </SafeAreaView>
