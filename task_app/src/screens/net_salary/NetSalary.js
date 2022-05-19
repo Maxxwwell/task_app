@@ -20,9 +20,31 @@ import {
 } from './styles';
 import {useEffect, useState} from 'react/cjs/react.development';
 import {colors} from '../../theme/colors';
+import { useRoute } from '@react-navigation/native';
 
-export default function NetSalary({navigation, route}) {
+export default function NetSalary({navigation}) {
   const [isLoading, setIsLoading] = useState(false);
+  const route = useRoute()
+  var NetSalary = Number(route.params.amount);
+  // console.log('net is',NetSalary)
+  let PAYE = Number(NetSalary * 0.25)
+  const EmployerContribution = Number(NetSalary * 0.03).toFixed(2)
+  const SNNIT = Number(NetSalary * 0.055).toFixed(2)
+  if (NetSalary < 365){
+    PAYE = Number(0)
+  }  else if(NetSalary > 365 && NetSalary <= 475){
+    PAYE = Number(NetSalary * 0.05).toFixed(2);
+  }
+   if(NetSalary > 475 && NetSalary <= 605){
+    PAYE = Number(NetSalary * 0.1).toFixed(2);
+  }
+
+  else if(NetSalary > 605 && NetSalary <= 3000){
+    PAYE = Number(NetSalary * 0.175).toFixed(2);
+  }
+  let GrossSalary = (Number(NetSalary) + Number(SNNIT) + Number(EmployerContribution) + Number(PAYE))
+  
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -53,7 +75,7 @@ export default function NetSalary({navigation, route}) {
               <Divider />
               <TaxTextContainer>
                 <TaxText>PAYE Tax</TaxText>
-                <AmountTax>GH¢ 00</AmountTax>
+                <AmountTax>GH¢ {PAYE}</AmountTax>
               </TaxTextContainer>
             </TaxContainer>
 
@@ -62,20 +84,20 @@ export default function NetSalary({navigation, route}) {
               <Divider />
               <TaxTextContainer>
                 <TaxText>Employer Pension</TaxText>
-                <AmountTax>GH¢ 00</AmountTax>
+                <AmountTax>GH¢ {EmployerContribution}</AmountTax>
               </TaxTextContainer>
               <TaxTextContainer>
                 <TaxText>SSNIT</TaxText>
-                <AmountTax>GH¢ 00</AmountTax>
+                <AmountTax>GH¢ {SNNIT}</AmountTax>
               </TaxTextContainer>
             </ContributionsContainer>
 
             <TakeHomeContainer>
-            <TaxTitle>Take home amount</TaxTitle>
+            <TaxTitle>Gross salary amount</TaxTitle>
           <Divider />
           <TaxTextContainer>
-            <TaxText>Net salary</TaxText>
-            <AmountTax>GH¢ 00</AmountTax>
+            <TaxText>Gross pay</TaxText>
+            <AmountTax>GH¢ {GrossSalary}</AmountTax>
           </TaxTextContainer>
 
             </TakeHomeContainer>

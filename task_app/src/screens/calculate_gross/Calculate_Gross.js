@@ -17,7 +17,9 @@ import {
 import { HeaderContainer } from '../onBoard/style';
 
 export default function Calculate_Gross({navigation, route}) {
-    const [amount, setAmount] = useState('');
+    
+  const [amount, setAmount] = useState();
+
     const validate = () => {
         Keyboard.dismiss();
         if (!amount) {
@@ -27,7 +29,7 @@ export default function Calculate_Gross({navigation, route}) {
           Alert.alert('Oops..', 'Salary can not be 0');
           return;
         }
-        navigation.navigate('home', {amount: amount});
+        navigation.navigate('net_salary', {amount: amount});
       };
     
       if (amount < 300) {
