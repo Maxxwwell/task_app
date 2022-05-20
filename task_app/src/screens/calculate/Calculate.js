@@ -15,10 +15,13 @@ import {
 } from './styles';
 import {HeaderContainer} from '../onBoard/style';
 import {useState} from 'react';
+import { FloatingLabelInput } from 'react-native-floating-label-input';
 
 
 export default function Calculate({navigation, route}) {
   const [amount, setAmount] = useState('');
+  const [allowances, setAllowances] = useState();
+  // const [taxRelief, setTaxRelief] = useState();
 
   const validate = () => {
     Keyboard.dismiss();
@@ -29,7 +32,7 @@ export default function Calculate({navigation, route}) {
       Alert.alert('Oops..', 'Salary can not be 0');
       return;
     }
-    navigation.navigate('home', {amount: amount});
+    navigation.navigate('home', {amount: amount, allowances: allowances});
   };
 
   if (amount < 300) {
@@ -43,18 +46,37 @@ export default function Calculate({navigation, route}) {
           <AmountText>How much is your gross monthly income?</AmountText>
         </HeaderContainer>
         <Button_TextField>
+
           <TextField
             autoFocus={false}
             keyboardType="numeric"
-            placeholder="GH¢ 2000.00"
+            placeholder="GH¢: Monthly Gross Income"
             value={amount}
             onChangeText={text => setAmount(text)}
+            
           />
+              <TextField
+            autoFocus={false}
+            keyboardType="numeric"
+            placeholder="GH¢: Monthly Allowances"
+            value={allowances}
+            onChangeText={text => setAllowances(text)}
+          />
+              {/* <TextField
+            autoFocus={false}
+            keyboardType="numeric"
+            placeholder="GH¢: Tax relief"
+            value={taxRelief}
+            onChangeText={text => setTaxRelief(text)}
+          /> */}
+ 
 
           <Button
             onPress={() => {
               validate();
               setAmount('');
+              setAllowances('');
+              // setTaxRelief('')
             }}>
             <ButtonText>CALCULATE</ButtonText>
           </Button>

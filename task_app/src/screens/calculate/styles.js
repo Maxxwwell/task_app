@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const Scaffold = styled(View)`
   flex: 1;
-  padding: 15px;
+  padding: 25px;
   background-color: ${({theme}) => theme.colors.grey};
 
 `;
@@ -19,13 +19,14 @@ export const AmountText = styled(Text)`
 
 export const TextField = styled(TextInput)`
   width: 100%;
-  height: 60px;
+  margin-top: 10px
+  height: 50px;
   border-color: ${props => props.theme.colors.secondary};
   border-width: 2px;
   border-radius: 50px;
   padding-horizontal: 50px;
-  font-size: 26px;
-  text-align: center;
+  font-size: 18px;
+    text-align: center;
   background-color: ${({theme}) => theme.colors.white};
 `;
 

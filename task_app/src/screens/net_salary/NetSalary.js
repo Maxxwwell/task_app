@@ -26,6 +26,7 @@ export default function NetSalary({navigation}) {
   const [isLoading, setIsLoading] = useState(false);
   const route = useRoute()
   var NetSalary = Number(route.params.amount);
+  var Allowances = route.params.allowances ?? 0
   // console.log('net is',NetSalary)
   let PAYE = Number(NetSalary * 0.25)
   const EmployerContribution = Number(NetSalary * 0.03).toFixed(2)
@@ -42,7 +43,7 @@ export default function NetSalary({navigation}) {
   else if(NetSalary > 605 && NetSalary <= 3000){
     PAYE = Number(NetSalary * 0.175).toFixed(2);
   }
-  let GrossSalary = (Number(NetSalary) + Number(SNNIT) + Number(EmployerContribution) + Number(PAYE))
+  let GrossSalary = (Number(NetSalary) + Number(SNNIT) + Number(EmployerContribution) + Number(PAYE) +Number(Allowances))
   
 
 

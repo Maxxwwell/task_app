@@ -19,6 +19,10 @@ import { HeaderContainer } from '../onBoard/style';
 export default function Calculate_Gross({navigation, route}) {
     
   const [amount, setAmount] = useState();
+  const [allowances, setAllowances] = useState();
+  // const [taxRelief, setTaxRelief] = useState();
+
+
 
     const validate = () => {
         Keyboard.dismiss();
@@ -29,7 +33,7 @@ export default function Calculate_Gross({navigation, route}) {
           Alert.alert('Oops..', 'Salary can not be 0');
           return;
         }
-        navigation.navigate('net_salary', {amount: amount});
+        navigation.navigate('net_salary', {amount: amount, allowances: allowances});
       };
     
       if (amount < 300) {
@@ -46,15 +50,30 @@ export default function Calculate_Gross({navigation, route}) {
           <TextField
             autoFocus={false}
             keyboardType="numeric"
-            placeholder="GH¢ 2000.00"
+            placeholder="GH¢ Monthly Net Income"
             value={amount}
             onChangeText={text => setAmount(text)}
           />
+              <TextField
+            autoFocus={false}
+            keyboardType="numeric"
+            placeholder="GH¢: Monthly Allowances"
+            value={allowances}
+            onChangeText={text => setAllowances(text)}
+          />
+              {/* <TextField
+            autoFocus={false}
+            keyboardType="numeric"
+            placeholder="GH¢: Tax relief"
+            value={taxRelief}
+            onChangeText={text => setTaxRelief(text)}
+          /> */}
 
           <Button
             onPress={() => {
               validate();
               setAmount('');
+              setAllowances('')
             }}>
             <ButtonText>CALCULATE</ButtonText>
           </Button>
