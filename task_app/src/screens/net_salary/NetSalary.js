@@ -26,10 +26,13 @@ export default function NetSalary({navigation}) {
   const [isLoading, setIsLoading] = useState(false);
   const route = useRoute()
   var NetSalary = Number(route.params.amount);
-  var Allowances = route.params.allowances ?? 0
+  var Allowances = route.params.allowances ?? 0;
+  let tier = Number(route.params.tier)
+  console.log('tier list', tier)
+
   // console.log('net is',NetSalary)
   let PAYE = Number(NetSalary * 0.25)
-  const EmployerContribution = Number(NetSalary * 0.03).toFixed(2)
+  const EmployerContribution = Number(NetSalary * tier / 100).toFixed(2)
   const SNNIT = Number(NetSalary * 0.055).toFixed(2)
   if (NetSalary < 365){
     PAYE = Number(0)

@@ -41,7 +41,7 @@ export const TaxTextContainer = styled(View)`
     flex-direction: row;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 10px
+    padding-top: 5px
     justify-content: space-between
 `
 
@@ -61,7 +61,7 @@ export const Divider = styled(View)`
 
 export const AmountTax = styled(Text)`
     font-weight: normal
-    font-size: 25px
+    font-size: 20px
     color: ${({ theme }) => theme.colors.grey};
 `
 

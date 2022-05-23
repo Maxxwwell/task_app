@@ -73,7 +73,7 @@ export const TaxText = styled(Text)`
 
 export const AmountTax = styled(Text)`
     font-weight: normal
-    font-size: 25px
+    font-size: 20px
 `
 
 export const ContributionsContainer = styled(View)`

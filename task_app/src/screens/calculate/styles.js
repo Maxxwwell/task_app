@@ -6,7 +6,6 @@ export const Scaffold = styled(View)`
   flex: 1;
   padding: 25px;
   background-color: ${({theme}) => theme.colors.grey};
-
 `;
 
 export const AmountText = styled(Text)`
